@@ -1,0 +1,22 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:DesktopChat01">
+    
+    <!-- Create some basic font family styles-->
+    <FontFamily x:Key="TimesNewRoman">Times New Roman</FontFamily>
+    <FontFamily x:Key="TimesNewRomanBold">Times New Roman Bold</FontFamily>
+    
+    <!-- Apply some default font family for the commonly used controls-->
+    <Style TargetType="{x:Type Control}" x:Key="BaseStyle">
+        <Setter Property="FontFamily" Value="{StaticResource TimesNewRoman}"/>
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}" x:Key="BaseStyleTextBlockStyle">
+        <Setter Property="FontFamily" Value="{StaticResource TimesNewRoman}"/>
+    </Style>
+    <Style TargetType="{x:Type Label}" BasedOn="{StaticResource BaseStyle}"/>
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}"/>
+    <!--<Style TargetType="{x:Type }" BasedOn="{StaticResource BaseStyle}"/>-->
+   
+    
+</ResourceDictionary>

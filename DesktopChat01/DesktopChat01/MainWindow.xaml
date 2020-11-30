@@ -5,8 +5,70 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesktopChat01"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Title="Dragon Chatt !" Height="450" Width="800">
+
+    <Window.Resources>
+        <Style TargetType="{x:Type local:MainWindow}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Window}">
+                        <Border Padding="{Binding OuterMarginSizeThickness}">
+                            <Grid>
+                                <Border CornerRadius="{Binding WindowCornerRadius}"
+                                        Background="{StaticResource BackgroundLightBrush}">
+                                    <Border.Effect>
+                                        <DropShadowEffect ShadowDepth="0" Opacity="0.3"/>
+                                    </Border.Effect>
+
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="{Binding TitleHeightGridLength,FallbackValue=35}"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid Grid.Column="0" Panel.ZIndex="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Button Command="{Binding MenuCommand}" Style="{StaticResource IconButton}">
+                                                <Image Source="/Images/Logo/dragon.ico" />
+                                            </Button>
+
+                                            <Viewbox Grid.Column="1">
+                                                <TextBlock Style="{StaticResource HeaderText}" Text="{Binding RelativeSource={RelativeSource TemplatedParent},Path=Title}"/>
+                                            </Viewbox>
+
+                                            <StackPanel Orientation="Horizontal" Grid.Column="2" Margin="0 0 5 0">
+                                                <Button Command="{Binding MinimizeCommand}" Content="_" Style="{StaticResource MenuButtons}"/>
+                                                <Button Command="{Binding MaximizeCommand}" Content="[ ]" Style="{StaticResource MenuButtons}"/>
+                                                <Button Command="{Binding CloseCommand}" Content="X" Style="{StaticResource CloseButton}"/>
+                                            </StackPanel>
+                                            
+                                        </Grid>
+                                        <Border Background="{StaticResource BackgroundVeryLightBrush}" Grid.Row="3">
+                                            <ContentPresenter Content="{TemplateBinding Content}"/>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <WindowChrome.WindowChrome>
+        <WindowChrome ResizeBorderThickness="{Binding ResizeBorderThickness}"
+                      CaptionHeight="{Binding TitleHeight}"
+                      GlassFrameThickness="0">
+
+        </WindowChrome>
+    </WindowChrome.WindowChrome>
+    <Frame Content="{Binding CurrentPage}" Background="Red"/>
 </Window>
